@@ -1,0 +1,21 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { formatDate } from "@/utils";
+
+const { title, created_at, lang } = Astro.props.content;
+---
+
+<BaseLayout {lang}>
+  <style>
+    .time {
+      color: var(--nc-ac-tx);
+    }
+    .title {
+      padding: 0;
+      margin-bottom: 2rem;
+    }
+  </style>
+  <time class="time">{formatDate(created_at)}</time>
+  <h1 class="title">{title}</h1>
+  <slot />
+</BaseLayout>

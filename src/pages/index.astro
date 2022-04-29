@@ -1,85 +1,56 @@
 ---
-import {Content as TourContent} from '../content/Tour.md';
-import Logo from '../components/Logo.astro';
-import '../styles/global.css';
-import '../styles/home.css';
-import PreactCounter from '../components/PreactCounter.jsx';
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { formatDate } from "@/utils";
 
-// Component Script:
-// You can write any JavaScript/TypeScript that you'd like here.
-// It will run during the build, but never in the browser.
-// All variables are available to use in the HTML template below.
-let title = 'My Astro Site';
-
-// Full Astro Component Syntax:
-// https://docs.astro.build/core-concepts/astro-components/
+// 全記事取得
+const posts = (await Astro.glob("./posts/*.md"))
+  .map(({ url, frontmatter: { created_at, title } }) => ({
+    url,
+    date: new Date(created_at),
+    title,
+  }))
+  .sort((a, b) => b.date.valueOf() - a.date.valueOf());
 ---
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width">
-	<title>{title}</title>
 
-	<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+<BaseLayout>
+  <style>
+    .link {
+      font-size: 2rem;
+      color: var(--nc-tx-2);
+    }
+    .article {
+      margin-bottom: 1rem;
+      text-decoration: none;
+    }
+    .article time {
+      color: var(--nc-ac-tx);
+      font-size: 0.8rem;
+    }
+    .article h2 {
+      font-weight: normal;
+      font-size: 1rem;
+      padding: 0;
+      border: 0;
+    }
+  </style>
+  <main>
+    <p>
+      Software Engineer ❤ Flutter/Dart, Elixir, Svelte, etc.<br />
+      <a class="link" href="https://github.com/macoshita">
+        <ion-icon name="logo-github"></ion-icon>
+      </a>
+      <a class="link" href="https://twitter.com/macoshita">
+        <ion-icon name="logo-twitter"></ion-icon>
+      </a>
+    </p>
 
-	<style>
-		header {
-			display: flex;
-			flex-direction: column;
-			gap: 1em;
-			max-width: min(100%, 68ch);
-		}
-		article {
-			padding-top: 2em;
-			line-height: 1.5;
-			display: flex;
-			flex-direction: column;
-			gap: 1em;
-			max-width: 70ch;
-		}
-		.banner {
-			text-align: center;
-			font-size: 1.2rem;
-			background: var(--color-light);
-			padding: 1em 1.5em;
-			padding-left: 0.75em;
-			border-radius: 4px;
-		}
-	</style>
-	<style is:global>
-		pre {
-			padding: 1rem;
-		}
-	</style>
-</head>
-<body>
-	<main>
-		<header>
-			<div>
-				<Logo width={60} height={80} />
-				<h1>Welcome to <a href="https://astro.build/">Astro</a></h1>
-			</div>
-		</header>
-
-		<article>
-			<div class="banner">
-				<p><strong>🧑‍🚀 Seasoned astronaut?</strong> Delete this template and have fun!</p>
-			</div>
-			<TourContent />
-		</article>
-
-		<!--
-
-		You can also use imported framework components directly in your markup!
-		
-		Note: by default, these components are NOT interactive on the client.
-		The `client:visible` directive tells Astro to make it interactive.
-		
-		See https://docs.astro.build/core-concepts/component-hydration/ 
-
-		-->
-
-		<PreactCounter client:visible />
-	</main>
-</body>
-</html>
+    <section>
+      {posts.map(post => (
+        <article class="article">
+          <time>{formatDate(post.date)}</time>
+          <h2><a href={post.url}>{post.title}</a></h2>
+        </article>
+      ))}
+    </section>
+  </main>
+</BaseLayout>

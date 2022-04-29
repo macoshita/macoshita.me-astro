@@ -1,0 +1,22 @@
+---
+import BaseHead from "@/components/BaseHead.astro";
+const lang = Astro.props.lang ?? "ja";
+---
+
+<html {lang}>
+  <head>
+    <BaseHead />
+  </head>
+  <body>
+    <style>
+      .blog-title {
+        color: var(--nc-tx-1);
+        text-decoration: none;
+      }
+    </style>
+    <header>
+      <h1><a class="blog-title" href="/">@macoshita</a></h1>
+    </header>
+    <slot />
+  </body>
+</html>
