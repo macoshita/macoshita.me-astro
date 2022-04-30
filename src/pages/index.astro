@@ -1,4 +1,6 @@
 ---
+import githubIcon from '@/icons/github.svg';
+import twitterIcon from "@/icons/twitter.svg";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { formatDate } from "@/utils";
 
@@ -14,9 +16,18 @@ const posts = (await Astro.glob("./posts/*.md"))
 
 <BaseLayout>
   <style>
+    .links {
+      margin-bottom: 1rem;
+    }
     .link {
-      font-size: 2rem;
+      display: inline-block;
       color: var(--nc-tx-2);
+      margin-right: .5rem;
+    }
+    .link > img {
+      width: 2rem;
+      margin: 0;
+      vertical-align: middle;
     }
     .article {
       margin-bottom: 1rem;
@@ -34,15 +45,11 @@ const posts = (await Astro.glob("./posts/*.md"))
     }
   </style>
   <main>
-    <p>
+    <section class="links">
       Software Engineer ❤ Flutter/Dart, Elixir, Svelte, etc.<br />
-      <a class="link" href="https://github.com/macoshita">
-        <ion-icon name="logo-github"></ion-icon>
-      </a>
-      <a class="link" href="https://twitter.com/macoshita">
-        <ion-icon name="logo-twitter"></ion-icon>
-      </a>
-    </p>
+      <a class="link" href="https://github.com/macoshita"><img src={githubIcon} alt="github"></a>
+      <a class="link" href="https://twitter.com/macoshita"><img src={twitterIcon} alt="twitter"></a>
+    </section>
 
     <section>
       {posts.map(post => (
