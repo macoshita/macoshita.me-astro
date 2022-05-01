@@ -7,14 +7,17 @@
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
+    "add": "astro add",
     "format": "prettier -w ."
   },
   "devDependencies": {
-    "astro": "^1.0.0-beta.19",
+    "@astrojs/svelte": "^0.1.2",
+    "astro": "^1.0.0-beta.20",
     "prettier-plugin-astro": "^0.0.12",
     "remark-breaks": "^3.0.2",
     "remark-emoji": "^3.0.2",
-    "remark-gfm": "^3.0.1"
+    "remark-gfm": "^3.0.1",
+    "svelte": "^3.48.0"
   },
   "dependencies": {
     "@exampledev/new.css": "^1.1.3"
