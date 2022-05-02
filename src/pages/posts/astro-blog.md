@@ -1,0 +1,206 @@
+---
+title: ブログを Astro に変えた
+created_at: 2022-05-01
+layout: "@/layouts/BlogPost.astro"
+setup: |
+  import Counter from "@/samples/astro-blog/counter.svelte";
+  import Incrementer from "@/samples/astro-blog/incrementer.svelte";
+---
+
+[Astro](https://astro.build) という良さげなフレームワークを知ったので、いつもの病気を発症してブログ環境を置き換えてみた。
+
+## できたもの
+
+- このブログ
+- コードは https://github.com/macoshita/macoshita.me-astro
+
+## Astro って何
+
+基本的には Next.js などとほぼ同様のファイルシステムベースのルーティングを持ち、ブログ等の静的サイトを簡単に生成できるフレームワークなのだが、[Partial Hydration](https://docs.astro.build/en/core-concepts/partial-hydration/) という大きな特徴がある。
+
+Hydration 自体は Next.js, Nuxt.js, Svelte Kit などのフレームワークも持っている仕組みで、サーバサイドでレンダリングした HTML を表示しつつ、あとから読み込んだ JavaScript で Event Listener をアタッチすることで、JavaScript を使って動かしている要素を動くようにするというもの。
+これが Astro のデフォルトでは行われない。
+以下のコード（公式の引用）は、レンダリングした HTML を返すが、JavaScript は返さないので、仮に onClick などが書いてあったとしても動かない。
+
+```astro
+---
+// Example: Use a static React component on the page, without JavaScript.
+import MyReactComponent from "../components/MyReactComponent.jsx";
+---
+
+<!-- 100% HTML, Zero JavaScript! -->
+<MyReactComponent />
+```
+
+しかし、以下のように client:load を書くことで、そのコンポーネントだけが Hydration される。これを Astro では Partial Hydration と呼んでいる。
+
+```astro
+---
+// Example: Use a dynamic React component on the page.
+import MyReactComponent from "../components/MyReactComponent.jsx";
+---
+
+<!-- This component is now interactive on the page! 
+     The rest of your website remains the same. -->
+<MyReactComponent client:load />
+```
+
+Next.js や Svelte Kit もページ単位で Hydration を OFF にすることはできるが、このように一部分だけを Hydration することはできない。
+そのため Hydration を OFF にできるのは、そのページ内のたとえどんな小さなパーツでも JavaScript を一切使っていない場合に限られる。
+Astro はこのウィークポイントをついて、一部だけが動的なサイトを、ムダなく生成できるというのが売りとなっている。
+
+Partial Hydration するコンポーネントは React、Preact、Svelte、Vue、SolidJS、AlpineJS、Lit から好きなものを選んで書くことができる。
+検索やダークモード切り替え、タブ切り替えなどの機能を、使い慣れたフレームワークで書くことができるのも Astro の強みと言える。
+
+ここまでだと SSG 機能をもつフレームワークとしか競合しなさそうだが、[SSR 対応も Experimental](https://docs.astro.build/en/guides/server-side-rendering/) なので、これが正式対応されると Next.js とガッツリ競合することになる。
+ログインの実装や、 API を叩いて動的にページをレンダリングすることができて、 Netlify, Vercel, あるいは Deno, Node.js ランタイムを使った自前サーバにデプロイできる。
+EC サイト・ブログサービス・画像共有サービス・etc...、世の中大抵のサイトは大部分が静的で一部だけ動的なので、かなりおもしろい競合と言えるのではないかと思う。
+
+### Partial Hydration の例
+
+以下に Partial Hydration の例を用意した。
+
+- Counter コンポーネントを `client:load` をつけて配置したもの → <Counter client:load />
+- Incrementer コンポーネントを配置したもの → <Incrementer client:load />
+
+Incrementer コンポーネントをクリックすると、Counter コンポーネントの値が増加する。
+※上記は実際に動作するので、クリックしてみてほしい。
+2 つは別のコンポーネントだが、svelte の store を使って状態を共有している。
+
+markdown には以下のように書いている。
+
+```md
+---
+setup: |
+  import Counter from "./counter.svelte";
+  import Incrementer from "./incrementer.svelte";
+---
+
+- Counter コンポーネントを `client:load` をつけて配置したもの → <Counter client:load />
+- Incrementer コンポーネントを配置したもの → <Incrementer client:load />
+```
+
+### React の状況
+
+React 18 は SSR がかなり強化され、Selective Hydration という機能が入った。
+
+- Suspense と React.lazy でコンポーネントを遅延ローディングすると、その部分の Hydration を分割して実行する。
+- Hydration が行われる前の要素をクリックなどした場合、その要素の Hydration を優先して実行し、イベントをリプレイする。
+
+というもので、ここでは詳しくは説明しないが、以下が一番わかりやすかった。
+https://github.com/reactwg/react-18/discussions/37
+
+https://github.com/vercel/next.js/issues/10344 によると、 Next.js は React と Chrome のチームと共同で Partial Hydration に取り組んでいるらしい。
+Selective Hydration がこれの前段なのか、完了形なのかは調べていないが、期待しても良さそうな気はする。
+
+### Svelte の状況
+
+https://github.com/sveltejs/kit/issues/1390
+
+議論はあるが、優先順位は高くなっていなさそう。
+Svelte は仮想 DOM ではないため、React とは違うアプローチが必要なので、出るとしてもかなり先のことになりそう。
+また `client:load` と書かせるのが果たして開発者体験としていいのかという議論も出ている。
+
+## このブログを作るにあたって必要だったもの
+
+### Astro Component
+
+https://docs.astro.build/en/core-concepts/astro-components/
+
+`.astro` 拡張子を持つファイルでコンポーネントを作れる。
+すでに上に出てきているが、 markdown の frontmatter のような形式で「静的ビルド時またはサーバサイド」で動く「JavaScript または TypeScript」を書き、それ以降に独自のテンプレートエンジンで HTML を書くという構成。
+ルーティング用のコンポーネントやレイアウト用のコンポーネントはこれで書く必要があるので、避けることはできない。
+
+すでに VS Code のプラグインもあり、補完はまったく問題なく動く。formatter は Prettier のプラグインがあるのだが、一部うまくフォーマットできないものもあり、まだ未完成感がある。
+もうちょい大規模なアプリケーションを組んだときに感想が変わる可能性はあるけど、書き味はそんなに嫌いじゃなかった。
+
+### markdown のパース
+
+Astro はデフォルトで markdown の frontmatter の処理、HTML 変換、Syntax Highlight が備わっている。
+以下のような layout を用意し、markdown の frontmatter で layout のパスを指定すれば、ブログページらしい見た目で表示することができる。
+Astro.props.content で frontmatter のパース結果を取得でき、 slot 要素で HTML 変換結果をレンダリングできる。
+
+```astro
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { formatDate } from "@/utils";
+const { title, created_at, lang } = Astro.props.content;
+---
+
+<BaseLayout {lang}>
+  <style>
+    .time {
+      color: var(--nc-ac-tx);
+    }
+    .title {
+      padding: 0;
+      margin-bottom: 2rem;
+    }
+  </style>
+  <time class="time">{formatDate(created_at)}</time>
+  <h1 class="title">{title}</h1>
+  <slot />
+</BaseLayout>
+```
+
+大抵はデフォルト設定で良いと思われるが、自分は改行・絵文字の処理と、Syntax Highlight のテーマはいじった。
+astro.config.mjs で以下のように設定できる。
+なお gfm はデフォルトで入っているが、remarkPlugins を書く場合は再度指定し直す必要があるとドキュメントにあったので、再指定している。
+
+```js
+import { defineConfig } from "astro/config";
+import breaks from "remark-breaks";
+import gfm from "remark-gfm";
+import emoji from "remark-emoji";
+// https://astro.build/config
+export default defineConfig({
+  markdown: {
+    remarkPlugins: [gfm, emoji, breaks],
+    shikiConfig: {
+      // Choose from Shiki's built-in themes
+      // https://github.com/shikijs/shiki/blob/main/docs/themes.md#all-themes
+      theme: "dark-plus",
+      wrap: true,
+    },
+  },
+});
+```
+
+### 記事一覧の取得
+
+[Astro.glob](https://docs.astro.build/en/reference/api-reference/#astroglob) という便利メソッドがある。
+`Astro.glob('posts/*.md')` と書くと posts 以下の markdown をすべて読み取り、frontmatter をパースした結果と HTML に変換した結果をセットで返してくれるというもので、これを叩けば記事一覧ページがかんたんに作れる。
+
+自分の場合はトップページに全記事のリンクをシンプルにおいてるだけなので使っていないが、[Pagenation](https://docs.astro.build/en/core-concepts/routing/#pagination) もできるので、凝った記事一覧ページもかんたんに作れそうだ。
+
+### ハマりどころ
+
+#### new.css
+
+前のブログで使ってる No Class CSS Framework の [new.css](https://newcss.net/) を続投。
+PageHead.astro に `import "@exampledev/new.css";` と書いたところ、ローカル開発中は効いていたが `npm run build` で rollup がエラーを吐いた。
+`import "@exampledev/new.css/new.css";` という形に修正したら無事ビルドできた。
+他にも、拡張子まで書かないとビルドできないケースがあった気もする。
+
+#### robots.txt
+
+robots.txt にアクセスするとサイトのトップページが表示された。
+robots.txt を public/ に置くことで回避した。
+これはどの仕様によるものか分かってない。
+
+## まとめ
+
+楽しかった。
+とにかくブログを作ることに関してはかなり楽。
+
+要するに Multi Page Application をいい感じに作ろうというフレームワークなんだろうと自分は理解した。
+Express で ejs とか使ってレンダリングした HTML に JavaScript を書いて動きをつけるのをめちゃくちゃ簡単にできるようにしたという話。
+「そういや昔、一部分だけ vue で動くサイトとか作ったなぁ」と懐かしい気持ちになった。
+
+なお、パフォーマンスについては元が SvelteKit の hydrate: false なので多分変わってない。
+トップページの Lighthouse は ALL 100 になったが、ついでに Netlify から Cloudflare Pages に移行したのが原因のはず。
+
+![lighthouse](/images/astro-blog-lighthouse.png)
+
+next.js も SvelteKit も好きで動向を追っているが、 Astro もお気に入りの 1 つとして動向を追っていきたい。
+とりあえず、大きいアプリケーションでもこのアプローチが通用するのか、何か作ってみて試したいと思った。
