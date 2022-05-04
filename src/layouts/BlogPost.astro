@@ -2,10 +2,24 @@
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { formatDate } from "@/utils";
 
-const { title, created_at, lang } = Astro.props.content;
+const defaultDescription = Astro.props.content.astro.html
+  .replace(/(<([^>]+)>)/gi, "")
+  .substr(0, 100)
+  .trim();
+const defaultOgImage = Astro.canonicalURL.pathname.replace(
+  /^\/posts\/([^\/]+)\/$/,
+  `${Astro.canonicalURL.origin}/og-image/$1.jpg`
+);
+const {
+  lang = "ja",
+  title,
+  description = defaultDescription,
+  created_at,
+  og_image = defaultOgImage,
+} = Astro.props.content;
 ---
 
-<BaseLayout {lang}>
+<BaseLayout {lang} {title} {description} {og_image}>
   <style>
     .time {
       color: var(--nc-ac-tx);

@@ -1,16 +1,17 @@
 ---
 import "@exampledev/new.css/new.css";
 export interface Props {
-  title?: string;
-  description?: string;
-  permalink?: string;
+  title: string;
+  description: string;
+  og_image?: string;
 }
-const siteTitle = "@macoshita";
-const title = Astro.props.title
-  ? `${Astro.props.title} / ${Astro.props.title}`
-  : siteTitle;
-const description = Astro.props.description || `${siteTitle} のブログ`;
-const permalink = Astro.props.permalink || "/";
+
+const {
+  title,
+  description,
+  og_image = `${Astro.canonicalURL.origin}/og-image.jpg`,
+} = Astro.props;
+const permalink = Astro.canonicalURL;
 ---
 
 <!-- Global Metadata -->
@@ -28,11 +29,11 @@ const permalink = Astro.props.permalink || "/";
 <meta property="og:url" content={permalink} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
-<!-- <meta property="og:image" content="https://astro.build/social.jpg?v=1" /> -->
+<meta property="og:image" content={og_image} />
 
 <!-- Twitter -->
 <meta property="twitter:card" content="summary_large_image" />
 <meta property="twitter:url" content={permalink} />
 <meta property="twitter:title" content={title} />
 <meta property="twitter:description" content={description} />
-<!-- <meta property="twitter:image" content="https://astro.build/social.jpg?v=1" /> -->
+<meta property="twitter:image" content={og_image} />

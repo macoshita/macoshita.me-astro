@@ -7,14 +7,15 @@ import svelte from "@astrojs/svelte";
 
 // https://astro.build/config
 export default defineConfig({
+  site: "https://macoshita.me",
   markdown: {
     remarkPlugins: [gfm, emoji, breaks],
     shikiConfig: {
       // Choose from Shiki's built-in themes
       // https://github.com/shikijs/shiki/blob/main/docs/themes.md#all-themes
       theme: "dark-plus",
-      wrap: true
-    }
+      wrap: true,
+    },
   },
-  integrations: [svelte()]
+  integrations: [svelte()],
 });

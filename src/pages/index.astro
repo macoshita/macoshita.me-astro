@@ -14,7 +14,7 @@ const posts = (await Astro.glob("./posts/*.md"))
   .sort((a, b) => b.date.valueOf() - a.date.valueOf());
 ---
 
-<BaseLayout>
+<BaseLayout lang='ja' title="@macoshita" description="@macoshita のブログ">
   <style>
     .links {
       margin-bottom: 1rem;

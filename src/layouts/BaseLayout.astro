@@ -1,11 +1,19 @@
 ---
 import BaseHead from "@/components/BaseHead.astro";
-const lang = Astro.props.lang ?? "ja";
+
+export interface Props {
+  lang: string;
+  title: string;
+  description: string;
+  og_image?: string;
+}
+
+const { lang, title, description, og_image } = Astro.props;
 ---
 
 <html {lang}>
   <head>
-    <BaseHead />
+    <BaseHead {title} {description} {og_image} />
   </head>
   <body>
     <style>
