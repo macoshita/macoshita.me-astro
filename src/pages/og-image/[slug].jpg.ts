@@ -26,9 +26,7 @@ export async function get({ slug }) {
 
 const CANVAS_WIDTH = 1200;
 const CANVAS_HEIGHT = 630;
-const FONT_SIZE = 60;
-const SPACING = 1.5;
-const FONT_HEIGHT = FONT_SIZE * SPACING;
+const PADDING = 96;
 const BLOG_NAME = "@macoshita";
 
 function drawOGImage(title: string): Buffer {
@@ -53,16 +51,24 @@ function fill(ctx: pkg.CanvasRenderingContext2D) {
 }
 
 function drawTitle(ctx: CanvasRenderingContext2D, title: string) {
-  ctx.font = `${FONT_SIZE}px KiwiMaru`;
-  ctx.textBaseline = "middle";
-  ctx.fillStyle = "#fff";
-  const lines = wrapText(ctx, title, CANVAS_WIDTH * 0.8);
+  let lines, fontSize;
+  for (fontSize of [80, 72, 64]) {
+    ctx.font = `${fontSize}px KiwiMaru`;
+    ctx.textBaseline = "middle";
+    ctx.fillStyle = "#fff";
+    lines = wrapText(ctx, title, CANVAS_WIDTH - PADDING * 2);
+    if (lines.length <= 3) {
+      break;
+    }
+  }
+
+  const fontHeight = fontSize * 1.5;
   lines.forEach((line, i) => {
     const { width } = ctx.measureText(line);
     ctx.fillText(
       line,
       (CANVAS_WIDTH - width) / 2,
-      (CANVAS_HEIGHT + (1 - lines.length) * FONT_HEIGHT) / 2 + i * FONT_HEIGHT
+      (CANVAS_HEIGHT + (1 - lines.length) * fontHeight) / 2 + i * fontHeight
     );
   });
 }
@@ -90,7 +96,11 @@ function wrapText(
 
 function drawName(ctx: CanvasRenderingContext2D) {
   ctx.font = `40px KiwiMaru`;
-  ctx.textBaseline = "bottom";
+  ctx.textBaseline = "middle";
   const { width } = ctx.measureText(BLOG_NAME);
-  ctx.fillText(BLOG_NAME, CANVAS_WIDTH - 80 - width, CANVAS_HEIGHT - 80);
+  ctx.fillText(
+    BLOG_NAME,
+    CANVAS_WIDTH - PADDING - width,
+    CANVAS_HEIGHT - PADDING
+  );
 }
