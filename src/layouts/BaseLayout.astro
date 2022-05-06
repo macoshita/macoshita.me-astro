@@ -1,5 +1,6 @@
 ---
 import BaseHead from "@/components/BaseHead.astro";
+import ThemeSwitcher from "@/components/ThemeSwitcher.svelte";
 
 export interface Props {
   lang: string;
@@ -21,9 +22,15 @@ const { lang, title, description, og_image } = Astro.props;
         color: var(--nc-tx-1);
         text-decoration: none;
       }
+      header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
     </style>
     <header>
       <h1><a class="blog-title" href="/">@macoshita</a></h1>
+      <ThemeSwitcher client:load />
     </header>
     <slot />
   </body>

@@ -1,6 +1,6 @@
 ---
-import githubIcon from '@/icons/github.svg';
-import twitterIcon from "@/icons/twitter.svg";
+import githubIcon from '@/icons/github.svg?raw';
+import twitterIcon from "@/icons/twitter.svg?raw";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { formatDate } from "@/utils";
 
@@ -23,12 +23,8 @@ const posts = (await Astro.glob("./posts/*.md"))
       display: inline-block;
       color: var(--nc-tx-2);
       margin-right: .5rem;
-    }
-    .link > img {
       width: 2rem;
       height: 2rem;
-      margin: 0;
-      vertical-align: middle;
     }
     .article {
       margin-bottom: 1rem;
@@ -48,8 +44,8 @@ const posts = (await Astro.glob("./posts/*.md"))
   <main>
     <section class="links">
       Software Engineer ❤ Flutter/Dart, Elixir, Svelte, etc.<br />
-      <a class="link" href="https://github.com/macoshita"><img src={githubIcon} alt="github"></a>
-      <a class="link" href="https://twitter.com/macoshita"><img src={twitterIcon} alt="twitter"></a>
+      <a class="link" href="https://github.com/macoshita" set:html={githubIcon}/>
+      <a class="link" href="https://twitter.com/macoshita" set:html={twitterIcon}/>
     </section>
 
     <section>

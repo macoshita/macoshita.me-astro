@@ -39,3 +39,21 @@ const permalink = Astro.canonicalURL;
 <meta property="twitter:title" content={title} />
 <meta property="twitter:description" content={description} />
 <meta property="twitter:image" content={og_image} />
+
+<!-- Dark mode (Inline script to prevent flushing immediately after loading) -->
+<script is:inline>
+  const isDarkTheme = () => {
+    const theme = localStorage.getItem("theme");
+    if (theme) {
+      return theme === "dark";
+    } else {
+      return window.matchMedia("(prefers-color-scheme: dark)").matches;
+    }
+  };
+
+  if (isDarkTheme()) {
+    document.documentElement.classList.add("dark");
+  } else {
+    document.documentElement.classList.remove("dark");
+  }
+</script>

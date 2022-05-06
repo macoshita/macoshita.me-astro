@@ -1,3 +1,29 @@
-h1, h2, h3, h4, h5, h6 {
+/* fix new.css bug */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --nc-lk-tx: var(--nc-d-lk-tx);
+  }
+}
+
+/* for manual dark mode */
+:root.dark {
+  --nc-tx-1: var(--nc-d-tx-1);
+  --nc-tx-2: var(--nc-d-tx-2);
+  --nc-bg-1: var(--nc-d-bg-1);
+  --nc-bg-2: var(--nc-d-bg-2);
+  --nc-bg-3: var(--nc-d-bg-3);
+  --nc-lk-1: var(--nc-d-lk-1);
+  --nc-lk-2: var(--nc-d-lk-2);
+  --nc-lk-tx: var(--nc-d-lk-tx);
+  --nc-ac-1: var(--nc-d-ac-1);
+  --nc-ac-tx: var(--nc--dac-tx);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   line-height: 1.5;
 }

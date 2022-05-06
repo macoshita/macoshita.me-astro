@@ -10,4 +10,8 @@ interface ImportMeta {
     pattern: string,
     options?: GlobOptions
   ): Record<string, () => Promise<Module>>;
+
+  env: {
+    SSR: boolean;
+  };
 }
