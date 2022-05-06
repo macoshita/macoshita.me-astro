@@ -7,3 +7,9 @@
 </script>
 
 <button on:click={increment}> + </button>
+
+<style>
+  button {
+    padding: 0 1rem;
+  }
+</style>

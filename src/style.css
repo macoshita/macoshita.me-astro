@@ -1,11 +1,4 @@
-/* fix new.css bug */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --nc-lk-tx: var(--nc-d-lk-tx);
-  }
-}
-
-/* for manual dark mode */
+/* for dark mode */
 :root.dark {
   --nc-tx-1: var(--nc-d-tx-1);
   --nc-tx-2: var(--nc-d-tx-2);

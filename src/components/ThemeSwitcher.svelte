@@ -19,30 +19,20 @@
       localStorage.setItem("theme", "dark");
       document.documentElement.classList.add("dark");
     } else {
-      localStorage.removeItem("theme");
+      localStorage.setItem("theme", "light");
       document.documentElement.classList.remove("dark");
     }
   };
 </script>
 
-<div class="icons" on:click={toggle}>
-  <button
-    type="button"
-    class="light"
-    class:selected={isDark === false}
-    aria-label="light"
-  >
+<button type="button" aria-label="switch theme" class="icons" on:click={toggle}>
+  <span class="icon light" class:selected={isDark === false}>
     {@html lightIcon}
-  </button>
-  <button
-    type="button"
-    class="dark"
-    class:selected={isDark === true}
-    aria-label="dark"
-  >
+  </span>
+  <span class="icon dark" class:selected={isDark === true}>
     {@html darkIcon}
-  </button>
-</div>
+  </span>
+</button>
 
 <style>
   .icons {
@@ -52,21 +42,21 @@
     justify-content: space-around;
     gap: 8px;
     padding: 8px;
-    background-color: var(--nc-bg-3);
-  }
-  .icons button {
-    background-color: transparent;
-    padding: 0;
     margin: 0;
+    background-color: var(--nc-bg-3);
+    border: 0;
+    cursor: pointer;
+  }
+  .icon {
     width: 24px;
     height: 24px;
     color: var(--nc-tx-1);
     transition: color 0.3s ease-in-out;
   }
-  button.light.selected {
+  .icon.light.selected {
     color: orangered;
   }
-  button.dark.selected {
+  .icon.dark.selected {
     color: yellow;
   }
 </style>
