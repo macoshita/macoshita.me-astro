@@ -2,16 +2,9 @@
   import LightIcon from "@/icons/light.svelte";
   import DarkIcon from "@/icons/dark.svelte";
 
-  const isDarkTheme = (): boolean => {
-    const theme = localStorage.getItem("theme");
-    if (theme) {
-      return theme === "dark";
-    } else {
-      return window.matchMedia("(prefers-color-scheme: dark)").matches;
-    }
-  };
-
-  let isDark = import.meta.env.SSR ? undefined : isDarkTheme();
+  let isDark = import.meta.env.SSR
+    ? undefined
+    : document.documentElement.classList.contains("dark");
 
   const toggle = () => {
     isDark = !isDark;
