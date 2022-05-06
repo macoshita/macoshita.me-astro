@@ -46,6 +46,7 @@
     background-color: var(--nc-bg-3);
     border: 0;
     cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
   }
   .icon {
     width: 24px;
