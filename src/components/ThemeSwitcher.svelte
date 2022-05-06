@@ -1,6 +1,6 @@
 <script lang="ts">
-  import lightIcon from "@/icons/light.svg?raw";
-  import darkIcon from "@/icons/dark.svg?raw";
+  import LightIcon from "@/icons/light.svelte";
+  import DarkIcon from "@/icons/dark.svelte";
 
   const isDarkTheme = (): boolean => {
     const theme = localStorage.getItem("theme");
@@ -26,12 +26,8 @@
 </script>
 
 <button type="button" aria-label="switch theme" class="icons" on:click={toggle}>
-  <span class="icon light" class:selected={isDark === false}>
-    {@html lightIcon}
-  </span>
-  <span class="icon dark" class:selected={isDark === true}>
-    {@html darkIcon}
-  </span>
+  <span class="icon light"><LightIcon /></span>
+  <span class="icon dark"><DarkIcon /></span>
 </button>
 
 <style>
@@ -54,10 +50,10 @@
     color: var(--nc-tx-1);
     transition: color 0.3s ease-in-out;
   }
-  .icon.light.selected {
+  :global(:root:not(.dark)) .icon.light {
     color: orangered;
   }
-  .icon.dark.selected {
+  :global(:root.dark) .icon.dark {
     color: yellow;
   }
 </style>

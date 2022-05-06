@@ -1,6 +1,6 @@
 ---
-import githubIcon from '@/icons/github.svg?raw';
-import twitterIcon from "@/icons/twitter.svg?raw";
+import GithubIcon from "@/icons/github.svelte";
+import TwitterIcon from "@/icons/twitter.svelte";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { formatDate } from "@/utils";
 
@@ -14,7 +14,7 @@ const posts = (await Astro.glob("./posts/*.md"))
   .sort((a, b) => b.date.valueOf() - a.date.valueOf());
 ---
 
-<BaseLayout lang='ja' title="@macoshita" description="@macoshita のブログ">
+<BaseLayout lang="ja" title="@macoshita" description="@macoshita のブログ">
   <style>
     .links {
       margin-bottom: 1rem;
@@ -22,7 +22,7 @@ const posts = (await Astro.glob("./posts/*.md"))
     .link {
       display: inline-block;
       color: var(--nc-tx-2);
-      margin-right: .5rem;
+      margin-right: 0.5rem;
       width: 2rem;
       height: 2rem;
     }
@@ -44,8 +44,8 @@ const posts = (await Astro.glob("./posts/*.md"))
   <main>
     <section class="links">
       Software Engineer ❤ Flutter/Dart, Elixir, Svelte, etc.<br />
-      <a class="link" href="https://github.com/macoshita" set:html={githubIcon}/>
-      <a class="link" href="https://twitter.com/macoshita" set:html={twitterIcon}/>
+      <a class="link" href="https://github.com/macoshita"><GithubIcon /></a>
+      <a class="link" href="https://twitter.com/macoshita"><TwitterIcon /></a>
     </section>
 
     <section>
