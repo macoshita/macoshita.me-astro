@@ -1,25 +1,11 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import { formatDate } from "@/utils";
+import { formatDate, getPostMeta } from "@/utils";
 
-const defaultDescription = Astro.props.content.astro.html
-  .replace(/(<([^>]+)>)/gi, "")
-  .substr(0, 100)
-  .trim();
-const defaultOgImage = Astro.canonicalURL.pathname.replace(
-  /^\/posts\/([^\/]+)\/$/,
-  `${Astro.canonicalURL.origin}/og-image/$1.jpg`
-);
-const {
-  lang = "ja",
-  title,
-  description = defaultDescription,
-  created_at,
-  og_image = defaultOgImage,
-} = Astro.props.content;
+const meta = getPostMeta(Astro.props.content, Astro.canonicalURL);
 ---
 
-<BaseLayout {lang} {title} {description} {og_image}>
+<BaseLayout {...meta}>
   <style>
     .time {
       color: var(--nc-ac-tx);
@@ -29,7 +15,7 @@ const {
       margin-bottom: 2rem;
     }
   </style>
-  <time class="time">{formatDate(created_at)}</time>
-  <h1 class="title">{title}</h1>
+  <time class="time">{formatDate(meta.created_at)}</time>
+  <h1 class="title">{meta.title}</h1>
   <slot />
 </BaseLayout>
