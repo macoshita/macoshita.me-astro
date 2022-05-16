@@ -18,4 +18,10 @@ export default defineConfig({
     },
   },
   integrations: [svelte()],
+  vite: {
+    optimizeDeps: {
+      // Ref: https://github.com/evanw/esbuild/issues/1051#issuecomment-1006992549
+      exclude: ["@napi-rs/canvas"],
+    },
+  },
 });
