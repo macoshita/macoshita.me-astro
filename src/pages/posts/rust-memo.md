@@ -2,7 +2,7 @@
 title: rust memo
 category: rust-memo
 tags:
-created_at: 2018-07-31 00:00:00 +0900
+createdAt: 2018-07-31 00:00:00 +0900
 updated_at: 2018-07-31 00:00:00 +0900
 published: true
 layout: "@/layouts/BlogPost.astro"

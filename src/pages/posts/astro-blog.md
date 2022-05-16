@@ -1,6 +1,6 @@
 ---
 title: ブログを Astro に変えた
-created_at: 2022-05-01
+createdAt: 2022-05-01
 tags: [Astro, Svelte]
 layout: "@/layouts/BlogPost.astro"
 setup: |
@@ -125,7 +125,7 @@ Astro.props.content で frontmatter のパース結果を取得でき、 slot �
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { formatDate } from "@/utils";
-const { title, created_at, lang } = Astro.props.content;
+const { title, createdAt, lang } = Astro.props.content;
 ---
 
 <BaseLayout {lang}>
@@ -138,7 +138,7 @@ const { title, created_at, lang } = Astro.props.content;
       margin-bottom: 2rem;
     }
   </style>
-  <time class="time">{formatDate(created_at)}</time>
+  <time class="time">{formatDate(createdAt)}</time>
   <h1 class="title">{title}</h1>
   <slot />
 </BaseLayout>

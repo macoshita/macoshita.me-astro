@@ -2,7 +2,7 @@
 title: "gitconfig の includeIf を使って git のユーザーを切り替える"
 category: switch-git-user-by-includeif
 tags:
-created_at: 2020-11-20 11:20:33 +0900
+createdAt: 2020-11-20 11:20:33 +0900
 updated_at: 2020-11-24 00:59:28 +0900
 published: true
 number: 23

@@ -2,7 +2,7 @@
 title: かな入力で遊ぶやつ作った
 category: play-kana-input
 tags:
-created_at: 2018-03-14 00:00:00 +0900
+createdAt: 2018-03-14 00:00:00 +0900
 updated_at: 2018-03-14 00:00:00 +0900
 published: true
 layout: "@/layouts/BlogPost.astro"

@@ -6,12 +6,12 @@ import BlogPosts from "@/components/BlogPosts.astro";
 
 // 全記事取得
 const posts = (await Astro.glob("./posts/*.md"))
-  .map(({ url, frontmatter: { created_at, title } }) => ({
+  .map(({ url, frontmatter: { createdAt, title } }) => ({
     url,
-    created_at: new Date(created_at),
+    createdAt: new Date(createdAt),
     title,
   }))
-  .sort((a, b) => b.created_at.valueOf() - a.created_at.valueOf());
+  .sort((a, b) => b.createdAt.valueOf() - a.createdAt.valueOf());
 ---
 
 <BaseLayout lang="ja" title="@macoshita" description="@macoshita のブログ">

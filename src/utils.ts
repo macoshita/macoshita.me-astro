@@ -10,8 +10,8 @@ interface Meta {
   postTitle: string;
   title: string;
   description: string;
-  created_at: Date;
-  og_image: string;
+  createdAt: Date;
+  ogImage: string;
   tags: string[];
 }
 
@@ -28,8 +28,8 @@ export const getPostMeta = (content: any, canonicalURL: URL): Meta => {
     lang = "ja",
     title: postTitle,
     description = defaultDescription,
-    created_at,
-    og_image = defaultOgImage,
+    createdAt,
+    ogImage = defaultOgImage,
     tags = [],
   } = content;
 
@@ -38,8 +38,8 @@ export const getPostMeta = (content: any, canonicalURL: URL): Meta => {
     postTitle,
     title: `${postTitle} - ${config.title}`,
     description,
-    created_at,
-    og_image,
+    createdAt,
+    ogImage,
     tags,
   };
 };

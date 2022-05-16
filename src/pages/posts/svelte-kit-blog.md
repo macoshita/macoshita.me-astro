@@ -1,6 +1,6 @@
 ---
 title: SvelteKit でブログ作ってみた
-created_at: 2021-04-15 00:45:00 +0900
+createdAt: 2021-04-15 00:45:00 +0900
 tags: [Svelte]
 layout: "@/layouts/BlogPost.astro"
 ---

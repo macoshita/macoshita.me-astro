@@ -1,6 +1,6 @@
 ---
 title: Wi-Fi ルーターを買い替えて tailscale 最高！ってなった話
-created_at: 2021-06-07 22:00:00 +0900
+createdAt: 2021-06-07 22:00:00 +0900
 layout: "@/layouts/BlogPost.astro"
 ---
 

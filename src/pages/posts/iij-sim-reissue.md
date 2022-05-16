@@ -2,7 +2,7 @@
 title: IIJ mio の SIM カードが故障した
 category: iij-sim-reissue
 tags:
-created_at: 2018-03-19 00:00:00 +0900
+createdAt: 2018-03-19 00:00:00 +0900
 updated_at: 2018-03-19 00:00:00 +0900
 published: true
 layout: "@/layouts/BlogPost.astro"

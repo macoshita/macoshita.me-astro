@@ -5,13 +5,13 @@ import "@/style.css";
 export interface Props {
   title: string;
   description: string;
-  og_image?: string;
+  ogImage?: string;
 }
 
 const {
   title,
   description,
-  og_image = `${Astro.canonicalURL.origin}/og-image.jpg`,
+  ogImage = `${Astro.canonicalURL.origin}/og-image.jpg`,
 } = Astro.props;
 const permalink = Astro.canonicalURL;
 ---
@@ -31,14 +31,14 @@ const permalink = Astro.canonicalURL;
 <meta property="og:url" content={permalink} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
-<meta property="og:image" content={og_image} />
+<meta property="og:image" content={ogImage} />
 
 <!-- Twitter -->
 <meta property="twitter:card" content="summary_large_image" />
 <meta property="twitter:url" content={permalink} />
 <meta property="twitter:title" content={title} />
 <meta property="twitter:description" content={description} />
-<meta property="twitter:image" content={og_image} />
+<meta property="twitter:image" content={ogImage} />
 
 <!-- Dark mode (Inline script to prevent flushing immediately after loading) -->
 <script is:inline>

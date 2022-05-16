@@ -1,6 +1,6 @@
 ---
 title: Astro で作ったブログに Svelte 製のダークモード切り替えボタンをつけた
-created_at: 2022-05-07
+createdAt: 2022-05-07
 tags: [Astro, Svelte]
 layout: "@/layouts/BlogPost.astro"
 ---

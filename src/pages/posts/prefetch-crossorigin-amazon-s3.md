@@ -3,7 +3,7 @@ title: The prefetch tag is not work without crossorigin attribute on Amazon S3
 lang: en
 category: prefetch-crossorigin-amazon-s3
 tags:
-created_at: 2018-04-17 00:00:00 +0900
+createdAt: 2018-04-17 00:00:00 +0900
 updated_at: 2018-04-17 00:00:00 +0900
 published: true
 layout: "@/layouts/BlogPost.astro"

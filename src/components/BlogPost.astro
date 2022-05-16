@@ -2,15 +2,15 @@
 import { formatDate } from "@/utils";
 
 export interface Props {
-  created_at: Date;
+  createdAt: Date;
   title: string;
   url: string;
 }
-const { created_at, title, url } = Astro.props;
+const { createdAt, title, url } = Astro.props;
 ---
 
 <article class="article">
-  <time>{formatDate(created_at)}</time>
+  <time>{formatDate(createdAt)}</time>
   <h2><a href={url}>{title}</a></h2>
 </article>
 

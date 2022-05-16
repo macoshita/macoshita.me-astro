@@ -2,7 +2,7 @@
 title: "Puppeteer で OGP 画像を自動生成"
 category: puppeteer-og-image
 tags:
-created_at: 2020-09-16 00:00:00 +0900
+createdAt: 2020-09-16 00:00:00 +0900
 updated_at: 2020-09-16 00:00:00 +0900
 published: true
 number: 2

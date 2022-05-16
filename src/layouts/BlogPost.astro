@@ -15,7 +15,7 @@ const meta = getPostMeta(Astro.props.content, Astro.canonicalURL);
       margin-bottom: 2rem;
     }
   </style>
-  <time class="time">{formatDate(meta.created_at)}</time>
+  <time class="time">{formatDate(meta.createdAt)}</time>
   <h1 class="title">{meta.postTitle}</h1>
   <slot />
 </BaseLayout>

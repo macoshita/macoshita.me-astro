@@ -12,9 +12,9 @@ const posts = (await Astro.glob("../posts/*.md"))
     ({ frontmatter: { tags } }) =>
       tags?.map((tag) => tag.toLowerCase())?.includes(tag) ?? false
   )
-  .map(({ url, frontmatter: { title, created_at } }) => ({
+  .map(({ url, frontmatter: { title, createdAt } }) => ({
     title,
-    created_at,
+    createdAt,
     url,
   }));
 

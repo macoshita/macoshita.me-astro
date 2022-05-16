@@ -6,15 +6,15 @@ export interface Props {
   lang: string;
   title: string;
   description: string;
-  og_image?: string;
+  ogImage?: string;
 }
 
-const { lang, title, description, og_image } = Astro.props;
+const { lang, title, description, ogImage } = Astro.props;
 ---
 
 <html {lang}>
   <head>
-    <BaseHead {title} {description} {og_image} />
+    <BaseHead {title} {description} {ogImage} />
   </head>
   <body>
     <style>
