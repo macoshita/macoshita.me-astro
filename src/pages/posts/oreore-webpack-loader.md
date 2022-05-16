@@ -5,7 +5,7 @@ tags:
 createdAt: 2018-03-16 00:00:00 +0900
 updated_at: 2018-03-16 00:00:00 +0900
 published: true
-layout: "@/layouts/BlogPost.astro"
+layout: "@/layouts/BlogPostLayout.astro"
 ---
 
 このブログを作るのにちょっとした webpack loader を書いて nuxt に適用したので、そのメモ。

@@ -6,7 +6,7 @@ tags:
 createdAt: 2018-03-18 00:00:00 +0900
 updated_at: 2018-03-18 00:00:00 +0900
 published: true
-layout: "@/layouts/BlogPost.astro"
+layout: "@/layouts/BlogPostLayout.astro"
 ---
 
 [markdown-it](https://github.com/markdown-it/markdown-it) has the `highlight` option.

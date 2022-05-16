@@ -5,7 +5,7 @@ tags:
 createdAt: 2018-07-31 00:00:00 +0900
 updated_at: 2018-07-31 00:00:00 +0900
 published: true
-layout: "@/layouts/BlogPost.astro"
+layout: "@/layouts/BlogPostLayout.astro"
 ---
 
 <https://doc.rust-lang.org/book/second-edition/>

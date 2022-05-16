@@ -5,7 +5,7 @@ tags:
 createdAt: 2018-03-14 00:00:00 +0900
 updated_at: 2018-03-14 00:00:00 +0900
 published: true
-layout: "@/layouts/BlogPost.astro"
+layout: "@/layouts/BlogPostLayout.astro"
 ---
 
 [かなあそび](https://macoshita.github.io/play-kana-input/)

@@ -1,7 +1,7 @@
 ---
 title: Wi-Fi ルーターを買い替えて tailscale 最高！ってなった話
 createdAt: 2021-06-07 22:00:00 +0900
-layout: "@/layouts/BlogPost.astro"
+layout: "@/layouts/BlogPostLayout.astro"
 ---
 
 Wi-Fi ルーターを [TP-Link Archer AX73](https://www.tp-link.com/jp/home-networking/wifi-router/archer-ax73/) に買い替えた。

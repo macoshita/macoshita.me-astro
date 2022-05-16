@@ -6,7 +6,7 @@ createdAt: 2020-11-05 02:04:11 +0900
 updated_at: 2020-12-04 02:03:47 +0900
 published: true
 number: 17
-layout: "@/layouts/BlogPost.astro"
+layout: "@/layouts/BlogPostLayout.astro"
 ---
 
 ## やったこと

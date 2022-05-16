@@ -2,7 +2,7 @@
 title: SvelteKit でブログ作ってみた
 createdAt: 2021-04-15 00:45:00 +0900
 tags: [Svelte]
-layout: "@/layouts/BlogPost.astro"
+layout: "@/layouts/BlogPostLayout.astro"
 ---
 
 [SvelteKit が Public Beta になった](https://svelte.dev/blog/sveltekit-beta)ので、いつもの病気を発症してブログ環境を置き換えてみた。

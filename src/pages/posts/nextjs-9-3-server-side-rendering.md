@@ -5,7 +5,7 @@ tags:
 createdAt: 2020-03-23 00:00:00 +0900
 updated_at: 2020-03-23 00:00:00 +0900
 published: true
-layout: "@/layouts/BlogPost.astro"
+layout: "@/layouts/BlogPostLayout.astro"
 ---
 
 最近は大体 Vue か Flutter を書いてるのだけど、 [NEXT.JS 9.3](https://nextjs.org/blog/next-9-3) でついに SSG が理想的な形で入ったので、 Nuxt.js で雑に作ったブログを NEXT.JS に置き換え、ついでに [NetlifyCMS](https://www.netlifycms.org/) を導入したりしていた。成果物はこのブログ。

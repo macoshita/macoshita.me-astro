@@ -5,7 +5,7 @@ tags:
 createdAt: 2018-03-19 00:00:00 +0900
 updated_at: 2018-03-19 00:00:00 +0900
 published: true
-layout: "@/layouts/BlogPost.astro"
+layout: "@/layouts/BlogPostLayout.astro"
 ---
 
 iPhone 6S + IIJ mio を使っているんだけど、今朝突然「不正な SIM です」という表示とともに、一切モバイル接続ができなくなってしまった。

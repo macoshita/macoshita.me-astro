@@ -1,7 +1,7 @@
 ---
 title: Flutter Hooks useEffect の便利ポイントの整理
 createdAt: 2021-10-12 23:39:00 +09:00
-layout: "@/layouts/BlogPost.astro"
+layout: "@/layouts/BlogPostLayout.astro"
 ---
 
 https://pub.dev/packages/flutter_hooks

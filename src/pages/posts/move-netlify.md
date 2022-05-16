@@ -6,7 +6,7 @@ tags:
 createdAt: 2018-04-18 00:00:00 +0900
 updated_at: 2018-04-18 00:00:00 +0900
 published: true
-layout: "@/layouts/BlogPost.astro"
+layout: "@/layouts/BlogPostLayout.astro"
 ---
 
 I'm making this blog using [nuxt](https://nuxtjs.org/) lately.

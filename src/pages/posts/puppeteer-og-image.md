@@ -6,7 +6,7 @@ createdAt: 2020-09-16 00:00:00 +0900
 updated_at: 2020-09-16 00:00:00 +0900
 published: true
 number: 2
-layout: "@/layouts/BlogPost.astro"
+layout: "@/layouts/BlogPostLayout.astro"
 ---
 
 このブログ、[ISUCON 10 の予選の記事](https://macoshita.me/posts/isucon10-qualifier)を書くに当たって、Netlify CMS + [next.js Blog Template](https://github.com/wutali/nextjs-netlify-blog-template) でデザインをとりあえずなんとかしたやつなんだけど、OGP 画像とかなんにもかんがえてなかったので無事死亡した。

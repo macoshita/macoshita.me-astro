@@ -6,7 +6,7 @@ createdAt: 2020-10-03 00:00:00 +0900
 updated_at: 2020-10-03 00:00:00 +0900
 published: true
 number: 3
-layout: "@/layouts/BlogPost.astro"
+layout: "@/layouts/BlogPostLayout.astro"
 ---
 
 完敗だった :innocent:

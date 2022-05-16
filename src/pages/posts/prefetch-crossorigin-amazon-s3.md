@@ -6,7 +6,7 @@ tags:
 createdAt: 2018-04-17 00:00:00 +0900
 updated_at: 2018-04-17 00:00:00 +0900
 published: true
-layout: "@/layouts/BlogPost.astro"
+layout: "@/layouts/BlogPostLayout.astro"
 ---
 
 On Amazon S3, `<link rel="prefetch">` is not work without crossorigin attribute.

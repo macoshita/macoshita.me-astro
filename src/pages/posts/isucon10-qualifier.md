@@ -6,7 +6,7 @@ createdAt: 2020-09-13 00:00:00 +0900
 updated_at: 2020-09-13 00:00:00 +0900
 published: true
 number: 1
-layout: "@/layouts/BlogPost.astro"
+layout: "@/layouts/BlogPostLayout.astro"
 ---
 
 ISUCON 10 に参加して、ISUCON 5 以来の予選突破を果たした。
