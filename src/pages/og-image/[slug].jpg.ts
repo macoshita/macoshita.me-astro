@@ -1,9 +1,14 @@
-import pkg, { CanvasRenderingContext2D } from "canvas";
 import path from "node:path";
 import TinySegmenter from "@/lib/tiny_segmenter";
+import { createCanvas, GlobalFonts, SKRSContext2D } from "@napi-rs/canvas";
 
-const { createCanvas, registerFont } = pkg;
 const segmenter = new TinySegmenter();
+
+// work only static build
+GlobalFonts.registerFromPath(
+  path.resolve(process.cwd(), "fonts/KiwiMaru-Regular.ttf"),
+  "KiwiMaru"
+);
 
 export function getStaticPaths() {
   // Ref: https://github.com/withastro/astro/blob/c3f411a7f2d77739cc32e7b7fbceb3d02018238d/packages/astro/test/fixtures/static-build/src/pages/posts.json.js
@@ -30,11 +35,6 @@ const PADDING = 96;
 const BLOG_NAME = "@macoshita";
 
 function drawOGImage(title: string): Buffer {
-  // only static build
-  registerFont(path.resolve(process.cwd(), "fonts/KiwiMaru-Regular.ttf"), {
-    family: "KiwiMaru",
-  });
-
   const canvas = createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT);
   const ctx = canvas.getContext("2d");
 
@@ -42,15 +42,15 @@ function drawOGImage(title: string): Buffer {
   drawTitle(ctx, title);
   drawName(ctx);
 
-  return canvas.toBuffer("image/jpeg", { quality: 0.8 });
+  return canvas.toBuffer("image/jpeg", 80);
 }
 
-function fill(ctx: pkg.CanvasRenderingContext2D) {
+function fill(ctx: SKRSContext2D) {
   ctx.fillStyle = "#111";
   ctx.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
 }
 
-function drawTitle(ctx: CanvasRenderingContext2D, title: string) {
+function drawTitle(ctx: SKRSContext2D, title: string) {
   let lines, fontSize;
   for (fontSize of [80, 72, 64]) {
     ctx.font = `${fontSize}px KiwiMaru`;
@@ -74,7 +74,7 @@ function drawTitle(ctx: CanvasRenderingContext2D, title: string) {
 }
 
 function wrapText(
-  ctx: CanvasRenderingContext2D,
+  ctx: SKRSContext2D,
   text: string,
   maxWidth: number
 ): string[] {
@@ -94,7 +94,7 @@ function wrapText(
   );
 }
 
-function drawName(ctx: CanvasRenderingContext2D) {
+function drawName(ctx: SKRSContext2D) {
   ctx.font = `40px KiwiMaru`;
   ctx.textBaseline = "middle";
   const { width } = ctx.measureText(BLOG_NAME);
