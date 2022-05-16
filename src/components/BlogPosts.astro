@@ -1,0 +1,14 @@
+---
+import type { Props as BlogPostProps } from '@/components/BlogPost.astro'
+import BlogPost from "@/components/BlogPost.astro";
+
+export interface Props {
+  posts: BlogPostProps[];
+}
+
+const {posts} = Astro.props
+---
+
+<section>
+  {posts.map(post => <BlogPost {...post}/>)}
+</section>

@@ -1,0 +1,32 @@
+---
+import { formatDate } from "@/utils";
+
+export interface Props {
+  created_at: Date;
+  title: string;
+  url: string;
+}
+const { created_at, title, url } = Astro.props;
+---
+
+<article class="article">
+  <time>{formatDate(created_at)}</time>
+  <h2><a href={url}>{title}</a></h2>
+</article>
+
+<style>
+  .article {
+    margin-bottom: 1rem;
+    text-decoration: none;
+  }
+  .article time {
+    color: var(--nc-ac-tx);
+    font-size: 0.8rem;
+  }
+  .article h2 {
+    font-weight: normal;
+    font-size: 1rem;
+    padding: 0;
+    border: 0;
+  }
+</style>

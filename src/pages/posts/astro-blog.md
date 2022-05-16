@@ -1,6 +1,7 @@
 ---
 title: ブログを Astro に変えた
 created_at: 2022-05-01
+tags: [Astro, Svelte]
 layout: "@/layouts/BlogPost.astro"
 setup: |
   import Counter from "@/samples/astro-blog/counter.svelte";

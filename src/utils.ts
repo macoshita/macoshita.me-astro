@@ -11,6 +11,7 @@ interface Meta {
   description: string;
   created_at: Date;
   og_image: string;
+  tags: string[];
 }
 
 export const getPostMeta = (content: any, canonicalURL: URL): Meta => {
@@ -28,6 +29,7 @@ export const getPostMeta = (content: any, canonicalURL: URL): Meta => {
     description = defaultDescription,
     created_at,
     og_image = defaultOgImage,
+    tags = [],
   } = content;
 
   return {
@@ -36,5 +38,6 @@ export const getPostMeta = (content: any, canonicalURL: URL): Meta => {
     description,
     created_at,
     og_image,
+    tags,
   };
 };

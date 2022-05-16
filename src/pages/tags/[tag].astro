@@ -1,0 +1,34 @@
+---
+import BlogPosts from "@/components/BlogPosts.astro";
+import config from "@/config";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+const { tag } = Astro.params;
+const title = `#${tag} - ${config.title}`;
+const description = `#${tag} の記事一覧`;
+
+const posts = (await Astro.glob("../posts/*.md"))
+  .filter(
+    ({ frontmatter: { tags } }) =>
+      tags?.map((tag) => tag.toLowerCase())?.includes(tag) ?? false
+  )
+  .map(({ url, frontmatter: { title, created_at } }) => ({
+    title,
+    created_at,
+    url,
+  }));
+
+export async function getStaticPaths() {
+  const tags = (await Astro.glob("../posts/*.md")).flatMap(
+    ({ frontmatter: { tags } }) => tags ?? []
+  );
+  const uniqueTags = new Set<string>(tags);
+
+  return [...uniqueTags].map((tag) => ({ params: { tag: tag.toLowerCase() } }));
+}
+---
+
+<BaseLayout lang="ja" {title} {description}>
+  <h2>#{tag}</h2>
+  <BlogPosts {posts} />
+</BaseLayout>
