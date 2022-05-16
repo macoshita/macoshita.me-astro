@@ -7,10 +7,12 @@ export const formatDate = (date: Date | string): string => {
 
 interface Meta {
   lang: string;
+  postTitle: string;
   title: string;
   description: string;
   created_at: Date;
   og_image: string;
+  tags: string[];
 }
 
 export const getPostMeta = (content: any, canonicalURL: URL): Meta => {
@@ -28,13 +30,16 @@ export const getPostMeta = (content: any, canonicalURL: URL): Meta => {
     description = defaultDescription,
     created_at,
     og_image = defaultOgImage,
+    tags = [],
   } = content;
 
   return {
     lang,
+    postTitle,
     title: `${postTitle} - ${config.title}`,
     description,
     created_at,
     og_image,
+    tags,
   };
 };

@@ -2,16 +2,16 @@
 import GithubIcon from "@/icons/github.svelte";
 import TwitterIcon from "@/icons/twitter.svelte";
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import { formatDate } from "@/utils";
+import BlogPosts from "@/components/BlogPosts.astro";
 
 // 全記事取得
 const posts = (await Astro.glob("./posts/*.md"))
   .map(({ url, frontmatter: { created_at, title } }) => ({
     url,
-    date: new Date(created_at),
+    created_at: new Date(created_at),
     title,
   }))
-  .sort((a, b) => b.date.valueOf() - a.date.valueOf());
+  .sort((a, b) => b.created_at.valueOf() - a.created_at.valueOf());
 ---
 
 <BaseLayout lang="ja" title="@macoshita" description="@macoshita のブログ">
@@ -26,20 +26,6 @@ const posts = (await Astro.glob("./posts/*.md"))
       width: 2rem;
       height: 2rem;
     }
-    .article {
-      margin-bottom: 1rem;
-      text-decoration: none;
-    }
-    .article time {
-      color: var(--nc-ac-tx);
-      font-size: 0.8rem;
-    }
-    .article h2 {
-      font-weight: normal;
-      font-size: 1rem;
-      padding: 0;
-      border: 0;
-    }
   </style>
   <main>
     <section class="links">
@@ -48,13 +34,6 @@ const posts = (await Astro.glob("./posts/*.md"))
       <a class="link" href="https://twitter.com/macoshita"><TwitterIcon /></a>
     </section>
 
-    <section>
-      {posts.map(post => (
-        <article class="article">
-          <time>{formatDate(post.date)}</time>
-          <h2><a href={post.url}>{post.title}</a></h2>
-        </article>
-      ))}
-    </section>
+    <BlogPosts {posts} />
   </main>
 </BaseLayout>
