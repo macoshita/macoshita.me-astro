@@ -1,4 +1,5 @@
 import config from "@/config";
+import { omitBy, isNil } from "lodash-es";
 
 export const formatDate = (date: Date | string): string => {
   const d = typeof date === "string" ? new Date(date) : date;
@@ -31,7 +32,7 @@ export const getPostMeta = (content: any, canonicalURL: URL): Meta => {
     createdAt,
     ogImage = defaultOgImage,
     tags = [],
-  } = content;
+  } = omitBy(content, isNil);
 
   return {
     lang,
