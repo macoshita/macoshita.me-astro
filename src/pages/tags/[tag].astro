@@ -8,14 +8,12 @@ const title = `#${tag} - ${config.title}`;
 const description = `#${tag} の記事一覧`;
 
 const posts = (await Astro.glob("../posts/*.md"))
-  .filter(
-    ({ frontmatter: { tags } }) =>
-      tags?.map((tag) => tag.toLowerCase())?.includes(tag) ?? false
-  )
-  .map(({ url, frontmatter: { title, createdAt } }) => ({
+  .filter(({ frontmatter: { tags } }) => tags?.includes(tag) ?? false)
+  .map(({ url, frontmatter: { title, createdAt, tags } }) => ({
     title,
     createdAt,
     url,
+    tags: tags ?? [],
   }));
 
 export async function getStaticPaths() {
@@ -24,7 +22,7 @@ export async function getStaticPaths() {
   );
   const uniqueTags = new Set<string>(tags);
 
-  return [...uniqueTags].map((tag) => ({ params: { tag: tag.toLowerCase() } }));
+  return [...uniqueTags].map((tag) => ({ params: { tag } }));
 }
 ---
 
@@ -32,3 +30,9 @@ export async function getStaticPaths() {
   <h2>#{tag}</h2>
   <BlogPosts {posts} />
 </BaseLayout>
+
+<style>
+  h2 {
+    margin-bottom: 24px;
+  }
+</style>

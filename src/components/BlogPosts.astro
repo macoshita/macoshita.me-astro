@@ -12,3 +12,11 @@ const {posts} = Astro.props
 <section>
   {posts.map(post => <BlogPost {...post}/>)}
 </section>
+
+<style>
+section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+</style>

@@ -1,32 +1,37 @@
 ---
 import { formatDate } from "@/utils";
+import Tag from "@/components/Tag.astro";
 
 export interface Props {
   createdAt: Date;
   title: string;
   url: string;
+  tags: string[];
 }
-const { createdAt, title, url } = Astro.props;
+const { createdAt, title, url, tags } = Astro.props;
 ---
 
-<article class="article">
+<article>
   <time>{formatDate(createdAt)}</time>
   <h2><a href={url}>{title}</a></h2>
 </article>
 
 <style>
-  .article {
-    margin-bottom: 1rem;
-    text-decoration: none;
-  }
-  .article time {
+  time {
     color: var(--nc-ac-tx);
     font-size: 0.8rem;
+    line-height: 1;
+    margin-bottom: 8px;
   }
-  .article h2 {
+  h2 {
     font-weight: normal;
     font-size: 1rem;
+    line-height: 1;
     padding: 0;
+    margin: 0;
     border: 0;
+  }
+  a {
+    text-decoration: none;
   }
 </style>

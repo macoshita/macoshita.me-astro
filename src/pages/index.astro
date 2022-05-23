@@ -3,30 +3,22 @@ import GithubIcon from "@/icons/github.svelte";
 import TwitterIcon from "@/icons/twitter.svelte";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import BlogPosts from "@/components/BlogPosts.astro";
+import Tag from "@/components/Tag.astro";
 
 // 全記事取得
 const posts = (await Astro.glob("./posts/*.md"))
-  .map(({ url, frontmatter: { createdAt, title } }) => ({
+  .map(({ url, frontmatter: { createdAt, title, tags } }) => ({
     url,
     createdAt: new Date(createdAt),
     title,
+    tags: tags ?? [],
   }))
   .sort((a, b) => b.createdAt.valueOf() - a.createdAt.valueOf());
+
+const tags = [...new Set<string>(posts.flatMap(({ tags }) => tags))].sort();
 ---
 
 <BaseLayout lang="ja" title="@macoshita" description="@macoshita のブログ">
-  <style>
-    .links {
-      margin-bottom: 1rem;
-    }
-    .link {
-      display: inline-block;
-      color: var(--nc-tx-2);
-      margin-right: 0.5rem;
-      width: 2rem;
-      height: 2rem;
-    }
-  </style>
   <main>
     <section class="links">
       Software Engineer ❤ Flutter/Dart, Elixir, Svelte, etc.<br />
@@ -34,6 +26,40 @@ const posts = (await Astro.glob("./posts/*.md"))
       <a class="link" href="https://twitter.com/macoshita"><TwitterIcon /></a>
     </section>
 
-    <BlogPosts {posts} />
+    <div class="posts">
+      <BlogPosts {posts} />
+      <div class="tags">{tags.map(tag => <Tag className="tag" {tag}/>)}</div>
+    </div>
   </main>
 </BaseLayout>
+
+<style>
+  .links {
+    margin-bottom: 24px;
+  }
+  .link {
+    display: inline-block;
+    color: var(--nc-tx-2);
+    margin-right: 0.5rem;
+    width: 2rem;
+    height: 2rem;
+  }
+  .posts {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .tags {
+    display: flex;
+    gap: 8px;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+@media (max-width: 480px) {
+  .tags {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+}
+</style>

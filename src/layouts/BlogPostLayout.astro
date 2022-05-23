@@ -1,4 +1,5 @@
 ---
+import Tag from "@/components/Tag.astro";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { formatDate, getPostMeta } from "@/utils";
 
@@ -7,15 +8,24 @@ const meta = getPostMeta(Astro.props.content, Astro.canonicalURL);
 
 <BaseLayout {...meta}>
   <style>
+    .info {
+      margin-bottom: 24px;
+    }
     .time {
       color: var(--nc-ac-tx);
     }
     .title {
+      margin: 0 0 8px;
       padding: 0;
-      margin-bottom: 2rem;
+    }
+    .tags {
+      font-size: .8rem;
     }
   </style>
-  <time class="time">{formatDate(meta.createdAt)}</time>
-  <h1 class="title">{meta.postTitle}</h1>
+  <section class="info">
+    <time class="time">{formatDate(meta.createdAt)}</time>
+    <h1 class="title">{meta.postTitle}</h1>
+    <div class="tags">{meta.tags.map(tag => <Tag {tag}/>)}</div>
+  </section>
   <slot />
 </BaseLayout>
