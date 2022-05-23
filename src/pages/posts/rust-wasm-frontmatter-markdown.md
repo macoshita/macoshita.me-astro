@@ -1,7 +1,7 @@
 ---
 title: "Rust で frontmatter と markdown を処理する WASM を書いた"
 category: 2020-12-01-rust-wasm-frontmatter-markdown
-tags:
+tags: [Rust]
 createdAt: 2020-11-05 02:04:11 +0900
 updated_at: 2020-12-04 02:03:47 +0900
 published: true

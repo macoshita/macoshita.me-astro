@@ -2,7 +2,7 @@
 title: Prism.js syntax highlighting on markdown-it
 lang: en
 category: markdown-it-prism
-tags:
+tags: [Node.js]
 createdAt: 2018-03-18 00:00:00 +0900
 updated_at: 2018-03-18 00:00:00 +0900
 published: true

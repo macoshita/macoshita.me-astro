@@ -1,6 +1,7 @@
 ---
 title: node.js canvas を使って OGP 画像を自動生成
 createdAt: 2022-05-06
+tags: [Astro, Node.js]
 layout: "@/layouts/BlogPostLayout.astro"
 ---
 

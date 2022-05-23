@@ -1,7 +1,7 @@
 ---
 title: "ISUCON 10 完全敗北してきた"
 category: isucon10-final
-tags:
+tags: [ISUCON]
 createdAt: 2020-10-03 00:00:00 +0900
 updated_at: 2020-10-03 00:00:00 +0900
 published: true
