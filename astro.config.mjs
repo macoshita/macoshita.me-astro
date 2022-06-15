@@ -2,8 +2,8 @@ import { defineConfig } from "astro/config";
 import breaks from "remark-breaks";
 import gfm from "remark-gfm";
 import emoji from "remark-emoji";
-
 import svelte from "@astrojs/svelte";
+import { astroImageTools } from "astro-imagetools";
 
 // https://astro.build/config
 export default defineConfig({
@@ -17,7 +17,8 @@ export default defineConfig({
       wrap: true,
     },
   },
-  integrations: [svelte()],
+  experimental: { integrations: true },
+  integrations: [astroImageTools, svelte()],
   vite: {
     optimizeDeps: {
       // Ref: https://github.com/evanw/esbuild/issues/1051#issuecomment-1006992549

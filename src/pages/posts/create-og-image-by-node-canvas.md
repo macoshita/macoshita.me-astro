@@ -11,7 +11,7 @@ layout: "@/layouts/BlogPostLayout.astro"
 
 https://github.com/macoshita/macoshita.me-astro/blob/1d81716bc541625a7f9135d9d19b856719e187b0/src/pages/og-image/%5Bslug%5D.jpg.ts
 
-![og-image](/og-image/create-og-image-by-node-canvas.jpg)
+![og-image](/images/create-og-image-by-node-canvas.jpg)
 
 Astro の [Non-HTML Page](https://docs.astro.build/en/core-concepts/astro-pages/#non-html-pages) として作った。
 

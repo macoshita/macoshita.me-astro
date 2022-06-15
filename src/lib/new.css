@@ -47,7 +47,7 @@ figure,
 form,
 input,
 iframe,
-img,
+picture,
 meter,
 nav,
 ol,
@@ -218,7 +218,7 @@ input[type="button"][disabled] {
   cursor: not-allowed;
 }
 
-a img {
+a:is(picture, img) {
   margin-bottom: 0px;
 }
 
@@ -399,10 +399,12 @@ input {
   box-sizing: border-box;
 }
 
+picture,
 img {
   max-width: 100%;
 }
 
+picture,
 img,
 svg {
   vertical-align: middle;
