@@ -8,7 +8,7 @@ published: true
 layout: "@/layouts/BlogPostLayout.astro"
 ---
 
-<https://doc.rust-lang.org/book/second-edition/>
+https://doc.rust-lang.org/book/second-edition/
 
 ## 3.1
 
@@ -153,7 +153,7 @@ s は dangle を抜けたらメモリ上から開放されるので、 &s は da
 文字列の一部を切り出すのに slice 使う例が書かれてるんだけど、これ 2 バイト文字とかどうなるのって思ったら案の定使えないらしい。
 いろいろ調べてたら下記の記事が参考になりそうだった。ともかく文字列操作は一筋縄ではいかないもよう
 
-<https://qiita.com/aflc/items/f2be832f9612064b12c6>
+https://qiita.com/aflc/items/f2be832f9612064b12c6
 
 ここでは immutable 保ったまま配列の一部を切り出すには slice つかうといいよくらいでよさそう
 

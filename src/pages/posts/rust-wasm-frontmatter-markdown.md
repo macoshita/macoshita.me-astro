@@ -28,7 +28,7 @@ Rust の経験も薄いし WASM は初体験だったので勉強した。
 ### ドキュメントのたどり方
 
 [Rust の公式ページ](https://www.rust-lang.org/ja/what/wasm) から辿れるところが基本。
-まずは <https://rustwasm.github.io/docs/book/> の Hello World までやると大体感触がつかめる。
+まずは https://rustwasm.github.io/docs/book/ の Hello World までやると大体感触がつかめる。
 大体わかってきたら [wasm-bindgen](https://rustwasm.github.io/docs/wasm-bindgen/) の方を見て、Rust のどの型が JS のどれに変換されるのか確認しながら書いた。
 
 ### 必要なツール

@@ -15,7 +15,7 @@ layout: "@/layouts/BlogPostLayout.astro"
 
 デフォルト画像をとりあえず変えときゃいいかなとも思ったんだけど、どうせならちょっと作るかーということで、 puppeteer で OGP 画像を生成するようにしてみた。
 
-<https://github.com/macoshita/macoshita.me/blob/master/gen-og-image.ts>
+https://github.com/macoshita/macoshita.me/blob/master/gen-og-image.ts
 
 ```typescript
 import path from "path";
@@ -63,7 +63,7 @@ import { fetchPostContent, PostContent } from "./src/lib/posts";
 
 多分、変更があったページだけに絞るとかしないといつか重すぎて死ぬ、、けどそのときはそのときで。スクショ撮るのはそんなに時間がかからないっぽいので、ぶっちゃけ 100 ページくらいまでは余裕なんじゃないかと思う。
 
-スクショ用の html はこちら → <https://github.com/macoshita/macoshita.me/blob/master/og-image/index.html>
+スクショ用の html はこちら → https://github.com/macoshita/macoshita.me/blob/master/og-image/index.html
 Ajax でローカルのファイルを取ってきたりをしてないので、今の所ローカルサーバ立てなくてもちゃんと表示できる。もし必要が出てきても、gen-og-image.ts でサーバ立ててスクショ取ってサーバ終了、でイケるはず。
 
 大勝利した様子 ↓

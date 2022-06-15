@@ -17,7 +17,7 @@ So, I have been moved to Netlify this blog.
 
 ## Deployment Strategy
 
-<https://github.com/macoshita/macoshita.me>
+https://github.com/macoshita/macoshita.me
 
 - `npm run generate` generate static files to `dist` directory.
 - Upload `dist` directory whole, that's all.
@@ -49,7 +49,7 @@ Audits score is no change to compare with GitHub Pages.
 
 ## Bonus: Cache settings of Netlify
 
-<https://www.netlify.com/blog/2017/02/23/better-living-through-caching/>
+https://www.netlify.com/blog/2017/02/23/better-living-through-caching/
 
 `max-age=0, must-revalidate, public`
 
