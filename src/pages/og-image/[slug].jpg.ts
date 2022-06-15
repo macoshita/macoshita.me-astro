@@ -19,7 +19,7 @@ export function getStaticPaths() {
   }));
 }
 
-export async function get({ slug }) {
+export async function get({ params: { slug } }) {
   const {
     frontmatter: { title },
   } = await import(`../posts/${slug}.md`);
