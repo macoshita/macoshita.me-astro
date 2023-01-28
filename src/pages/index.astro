@@ -6,7 +6,7 @@ import BlogPosts from "@/components/BlogPosts.astro";
 import Tag from "@/components/Tag.astro";
 
 // 全記事取得
-const posts = (await Astro.glob("./posts/*.mdx"))
+const posts = (await Astro.glob("./posts/*.{md,mdx}"))
   .map(({ url, frontmatter: { createdAt, title, tags } }) => ({
     url,
     createdAt: new Date(createdAt),

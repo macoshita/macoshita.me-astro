@@ -26,10 +26,9 @@ export const getPostMeta = (
       ?.replace(/(<([^>]+)>)/gi, "")
       .substring(0, 100)
       .trim() ?? "";
-  const defaultOgImage = canonicalURL.pathname.replace(
-    /^\/posts\/([^\/]+)\/$/,
-    `${canonicalURL.origin}/og-image/$1.jpg`
-  );
+  const defaultOgImage =
+    canonicalURL.href.replace("/posts/", "/og-image/").replace(/\/$/, "") +
+    ".jpg";
   const {
     lang = "ja",
     title: postTitle,
