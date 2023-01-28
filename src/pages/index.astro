@@ -6,7 +6,7 @@ import BlogPosts from "@/components/BlogPosts.astro";
 import Tag from "@/components/Tag.astro";
 
 // 全記事取得
-const posts = (await Astro.glob("./posts/*.md"))
+const posts = (await Astro.glob("./posts/*.mdx"))
   .map(({ url, frontmatter: { createdAt, title, tags } }) => ({
     url,
     createdAt: new Date(createdAt),
@@ -28,7 +28,7 @@ const tags = [...new Set<string>(posts.flatMap(({ tags }) => tags))].sort();
 
     <div class="posts">
       <BlogPosts {posts} />
-      <div class="tags">{tags.map(tag => <Tag className="tag" {tag}/>)}</div>
+      <div class="tags">{tags.map((tag) => <Tag className="tag" {tag} />)}</div>
     </div>
   </main>
 </BaseLayout>

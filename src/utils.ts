@@ -16,11 +16,16 @@ interface Meta {
   tags: string[];
 }
 
-export const getPostMeta = (content: any, canonicalURL: URL): Meta => {
-  const defaultDescription = content.astro.html
-    .replace(/(<([^>]+)>)/gi, "")
-    .substr(0, 100)
-    .trim();
+export const getPostMeta = (
+  frontmatter: Record<string, any>,
+  compiledContent: string | undefined,
+  canonicalURL: URL
+): Meta => {
+  const defaultDescription =
+    compiledContent
+      ?.replace(/(<([^>]+)>)/gi, "")
+      .substring(0, 100)
+      .trim() ?? "";
   const defaultOgImage = canonicalURL.pathname.replace(
     /^\/posts\/([^\/]+)\/$/,
     `${canonicalURL.origin}/og-image/$1.jpg`
@@ -32,7 +37,7 @@ export const getPostMeta = (content: any, canonicalURL: URL): Meta => {
     createdAt,
     ogImage = defaultOgImage,
     tags = [],
-  } = omitBy(content, isNil);
+  } = omitBy(frontmatter, isNil);
 
   return {
     lang,
