@@ -12,17 +12,17 @@ GlobalFonts.registerFromPath(
 
 export function getStaticPaths() {
   // Ref: https://github.com/withastro/astro/blob/c3f411a7f2d77739cc32e7b7fbceb3d02018238d/packages/astro/test/fixtures/static-build/src/pages/posts.json.js
-  const posts = Object.keys(import.meta.glob("../posts/**/*.md"));
+  const posts = Object.keys(import.meta.glob("../posts/**/*.mdx"));
 
   return posts.map((filename) => ({
-    params: { slug: filename.replace(/^.*\/(.*)\.md$/, "$1") },
+    params: { slug: filename.replace(/^.*\/(.*)\.mdx$/, "$1") },
   }));
 }
 
 export async function get({ params: { slug } }) {
   const {
     frontmatter: { title },
-  } = await import(`../posts/${slug}.md`);
+  } = await import(`../posts/${slug}.mdx`);
 
   return {
     body: drawOGImage(title),

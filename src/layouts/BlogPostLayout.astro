@@ -3,7 +3,11 @@ import Tag from "@/components/Tag.astro";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { formatDate, getPostMeta } from "@/utils";
 
-const meta = getPostMeta(Astro.props.content, Astro.canonicalURL);
+const meta = getPostMeta(
+  Astro.props.frontmatter,
+  Astro.props.compiledContent?.(),
+  new URL(Astro.url.pathname, Astro.site)
+);
 ---
 
 <BaseLayout {...meta}>
@@ -19,13 +23,13 @@ const meta = getPostMeta(Astro.props.content, Astro.canonicalURL);
       padding: 0;
     }
     .tags {
-      font-size: .8rem;
+      font-size: 0.8rem;
     }
   </style>
   <section class="info">
     <time class="time">{formatDate(meta.createdAt)}</time>
     <h1 class="title">{meta.postTitle}</h1>
-    <div class="tags">{meta.tags.map(tag => <Tag {tag}/>)}</div>
+    <div class="tags">{meta.tags.map((tag) => <Tag {tag} />)}</div>
   </section>
   <slot />
 </BaseLayout>

@@ -5,20 +5,27 @@ import emoji from "remark-emoji";
 import svelte from "@astrojs/svelte";
 import { astroImageTools } from "astro-imagetools";
 
+import mdx from "@astrojs/mdx";
+
 // https://astro.build/config
 export default defineConfig({
   site: "https://macoshita.me",
-  markdown: {
-    remarkPlugins: [gfm, emoji, breaks],
-    shikiConfig: {
-      // Choose from Shiki's built-in themes
-      // https://github.com/shikijs/shiki/blob/main/docs/themes.md#all-themes
-      theme: "dark-plus",
-      wrap: true,
-    },
+  experimental: {
+    integrations: true,
   },
-  experimental: { integrations: true },
-  integrations: [astroImageTools, svelte()],
+  integrations: [
+    astroImageTools,
+    svelte(),
+    mdx({
+      remarkPlugins: [gfm, emoji, breaks],
+      shikiConfig: {
+        // Choose from Shiki's built-in themes
+        // https://github.com/shikijs/shiki/blob/main/docs/themes.md#all-themes
+        theme: "dark-plus",
+        wrap: true,
+      },
+    }),
+  ],
   vite: {
     optimizeDeps: {
       // Ref: https://github.com/evanw/esbuild/issues/1051#issuecomment-1006992549

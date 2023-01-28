@@ -7,7 +7,7 @@ const { tag } = Astro.params;
 const title = `#${tag} - ${config.title}`;
 const description = `#${tag} の記事一覧`;
 
-const posts = (await Astro.glob("../posts/*.md"))
+const posts = (await Astro.glob("../posts/*.mdx"))
   .filter(({ frontmatter: { tags } }) => tags?.includes(tag) ?? false)
   .map(({ url, frontmatter: { title, createdAt, tags } }) => ({
     title,
@@ -17,7 +17,7 @@ const posts = (await Astro.glob("../posts/*.md"))
   }));
 
 export async function getStaticPaths() {
-  const tags = (await Astro.glob("../posts/*.md")).flatMap(
+  const tags = (await Astro.glob("../posts/*.mdx")).flatMap(
     ({ frontmatter: { tags } }) => tags ?? []
   );
   const uniqueTags = new Set<string>(tags);
