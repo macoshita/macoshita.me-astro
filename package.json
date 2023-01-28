@@ -11,7 +11,7 @@
     "format": "prettier -w ."
   },
   "devDependencies": {
-    "@astrojs/svelte": "^0.1.4",
+    "@astrojs/svelte": "^1.0.2",
     "@napi-rs/canvas": "^0.1.21",
     "astro": "^1.0.0-beta.46",
     "astro-imagetools": "^0.7.6",
