@@ -19,7 +19,7 @@
     "lodash-es": "^4.17.21",
     "prettier-plugin-astro": "^0.8.0",
     "remark-breaks": "^3.0.2",
-    "remark-emoji": "^3.0.2",
+    "remark-emoji": "^3.1.0",
     "remark-gfm": "^3.0.1",
     "svelte": "^3.48.0"
   }
