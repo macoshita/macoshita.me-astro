@@ -13,7 +13,7 @@
   "devDependencies": {
     "@astrojs/mdx": "^0.15.1",
     "@astrojs/svelte": "^0.1.4",
-    "@napi-rs/canvas": "^0.1.21",
+    "@napi-rs/canvas": "^0.1.34",
     "astro": "^2.0.2",
     "astro-imagetools": "^0.7.6",
     "lodash-es": "^4.17.21",
