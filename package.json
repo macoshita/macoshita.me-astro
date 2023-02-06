@@ -12,7 +12,7 @@
   },
   "devDependencies": {
     "@astrojs/mdx": "^0.15.1",
-    "@astrojs/svelte": "^0.1.4",
+    "@astrojs/svelte": "^2.0.1",
     "@napi-rs/canvas": "^0.1.21",
     "astro": "^2.0.2",
     "astro-imagetools": "^0.7.6",
