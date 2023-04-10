@@ -14,7 +14,7 @@
     "@astrojs/mdx": "^0.15.1",
     "@astrojs/svelte": "^0.1.4",
     "@napi-rs/canvas": "^0.1.21",
-    "astro": "^2.0.2",
+    "astro": "^2.2.1",
     "astro-imagetools": "^0.7.6",
     "lodash-es": "^4.17.21",
     "prettier-plugin-astro": "^0.8.0",
