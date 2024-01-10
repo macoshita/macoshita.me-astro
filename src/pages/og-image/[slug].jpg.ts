@@ -19,7 +19,7 @@ export function getStaticPaths() {
   }));
 }
 
-export async function get({ params: { slug } }) {
+export async function GET({ params: { slug } }) {
   var content;
   try {
     content = await import(`../posts/${slug}.md`);
@@ -30,9 +30,7 @@ export async function get({ params: { slug } }) {
     frontmatter: { title },
   } = content;
 
-  return {
-    body: drawOGImage(title),
-  };
+  return new Response(drawOGImage(title));
 }
 
 const CANVAS_WIDTH = 1200;
