@@ -1,8 +1,7 @@
 import path from "node:path";
-import TinySegmenter from "@/lib/tiny_segmenter";
 import { createCanvas, GlobalFonts, SKRSContext2D } from "@napi-rs/canvas";
 
-const segmenter = new TinySegmenter();
+const segmenter = new Intl.Segmenter("ja", { granularity: "word" });
 
 // work only static build
 GlobalFonts.registerFromPath(
@@ -82,11 +81,9 @@ function wrapText(
   text: string,
   maxWidth: number
 ): string[] {
-  return segmenter.segment(text).reduce(
-    (lines, segment) => {
-      const { width } = ctx.measureText(
-        lines[lines.length - 1] + segment.trim()
-      );
+  return Array.from(segmenter.segment(text)).reduce(
+    (lines, { segment }) => {
+      const { width } = ctx.measureText(lines[lines.length - 1] + segment);
       if (width > maxWidth) {
         lines.push("");
       }
