@@ -21,7 +21,7 @@
     "svelte": "^4.2.8"
   },
   "dependencies": {
-    "@astrojs/mdx": "^2.0.5",
+    "@astrojs/mdx": "^2.1.0",
     "@astrojs/svelte": "^5.0.3"
   }
 }
