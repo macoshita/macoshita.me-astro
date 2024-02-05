@@ -12,7 +12,7 @@
   },
   "devDependencies": {
     "@napi-rs/canvas": "^0.1.44",
-    "astro": "^4.2.1",
+    "astro": "^4.3.2",
     "lodash-es": "^4.17.21",
     "prettier-plugin-astro": "^0.12.3",
     "remark-breaks": "^4.0.0",
