@@ -22,11 +22,11 @@ layout: "@/layouts/BlogPostLayout.astro"
 
 上記ページを最初から読めばわかるが、まず最初に **移管するドメイン用のサイトを作る** 必要がある。管理画面左上のこちらから、
 
-![cloudflare](/public/images/2024-02-15-cloudflare.png)
+<img alt="cloudflare" src="/images/2024-02-15-cloudflare.png" width="320">
 
 サイトを追加を選ぶと、ドメインを入力する画面が出てくるので、移管するドメインを入力。
 
-![Alt text](/public/images/2024-02-15-add-domain.png)
+<img alt="cloudflare add domain" src="/images/2024-02-15-add-domain.png" width="320">
 
 そしてあとは画面に従って Cloudflare のネームサーバーを移管元のレジストラの管理画面に登録する。
 そうすると DNS レコードをいい感じに設定した状態になり、まずネームサーバーの移行が完了する。
