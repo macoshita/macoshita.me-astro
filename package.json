@@ -14,7 +14,7 @@
     "@napi-rs/canvas": "^0.1.45",
     "astro": "^4.3.5",
     "lodash-es": "^4.17.21",
-    "prettier-plugin-astro": "^0.12.3",
+    "prettier-plugin-astro": "^0.13.0",
     "remark-breaks": "^4.0.0",
     "remark-emoji": "^4.0.1",
     "remark-gfm": "^4.0.0",
