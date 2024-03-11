@@ -11,7 +11,7 @@
     "format": "prettier -w ."
   },
   "devDependencies": {
-    "@napi-rs/canvas": "^0.1.45",
+    "@napi-rs/canvas": "^0.1.51",
     "astro": "^4.3.5",
     "lodash-es": "^4.17.21",
     "prettier-plugin-astro": "^0.13.0",
