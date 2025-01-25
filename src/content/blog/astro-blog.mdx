@@ -8,11 +8,9 @@ description: |
   コードは https://github.com/macoshita/
 createdAt: 2022-05-01
 tags: [Astro, Svelte]
-layout: "@/layouts/BlogPostLayout.astro"
 ---
 
-import Counter from "@/samples/astro-blog/counter.svelte";
-import Incrementer from "@/samples/astro-blog/incrementer.svelte";
+**以下の内容はかなり古いため動かない**
 
 [Astro](https://astro.build) という良さげなフレームワークを知ったので、いつもの病気を発症してブログ環境を置き換えてみた。
 
@@ -47,7 +45,7 @@ import MyReactComponent from "../components/MyReactComponent.jsx";
 import MyReactComponent from "../components/MyReactComponent.jsx";
 ---
 
-<!-- This component is now interactive on the page! 
+<!-- This component is now interactive on the page!
      The rest of your website remains the same. -->
 <MyReactComponent client:load />
 ```
@@ -67,8 +65,8 @@ EC サイト・ブログサービス・画像共有サービス・etc...、世�
 
 以下に Partial Hydration の例を用意した。
 
-- Counter コンポーネントを `client:load` をつけて配置したもの → <Counter client:load />
-- Incrementer コンポーネントを配置したもの → <Incrementer client:load />
+- Counter コンポーネントを `client:load` をつけて配置したもの → `<Counter client:load />`
+- Incrementer コンポーネントを配置したもの → `<Incrementer client:load />`
 
 Incrementer コンポーネントをクリックすると、Counter コンポーネントの値が増加する。
 ※上記は実際に動作するので、クリックしてみてほしい。

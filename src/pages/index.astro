@@ -1,67 +1,89 @@
 ---
-import GithubIcon from "@/icons/github.svelte";
-import TwitterIcon from "@/icons/twitter.svelte";
-import BaseLayout from "@/layouts/BaseLayout.astro";
-import BlogPosts from "@/components/BlogPosts.astro";
-import Tag from "@/components/Tag.astro";
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
+import { getCollection } from "astro:content";
+import FormattedDate from "../components/FormattedDate.astro";
 
-// 全記事取得
-const posts = (await Astro.glob("./posts/*.{md,mdx}"))
-  .map(({ url, frontmatter: { createdAt, title, tags } }) => ({
-    url,
-    createdAt: new Date(createdAt),
-    title,
-    tags: tags ?? [],
-  }))
-  .sort((a, b) => b.createdAt.valueOf() - a.createdAt.valueOf());
-
-const tags = [...new Set<string>(posts.flatMap(({ tags }) => tags))].sort();
+const posts = (await getCollection("blog")).sort(
+  (a, b) => b.data.createdAt.valueOf() - a.data.createdAt.valueOf()
+);
 ---
 
-<BaseLayout lang="ja" title="@macoshita" description="@macoshita のブログ">
-  <main>
-    <section class="links">
-      Software Engineer ❤ Flutter/Dart, Elixir, Svelte, etc.<br />
-      <a class="link" href="https://github.com/macoshita"><GithubIcon /></a>
-      <a class="link" href="https://twitter.com/macoshita"><TwitterIcon /></a>
-    </section>
-
-    <div class="posts">
-      <BlogPosts {posts} />
-      <div class="tags">{tags.map((tag) => <Tag className="tag" {tag} />)}</div>
-    </div>
-  </main>
-</BaseLayout>
-
-<style>
-  .links {
-    margin-bottom: 24px;
-  }
-  .link {
-    display: inline-block;
-    color: var(--nc-tx-2);
-    margin-right: 0.5rem;
-    width: 2rem;
-    height: 2rem;
-  }
-  .posts {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-  }
-
-  .tags {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-    flex-direction: column;
-    align-items: flex-end;
-  }
-
-  @media (max-width: 480px) {
-    .tags {
-      flex-direction: row;
-      align-items: flex-start;
-    }
-  }
-</style>
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    <style>
+      main {
+        width: 960px;
+      }
+      ul {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2rem;
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+      }
+      ul li * {
+        text-decoration: none;
+        transition: 0.2s ease;
+      }
+      ul li img {
+        margin-bottom: 0.5rem;
+        border-radius: 12px;
+      }
+      ul li a {
+        display: block;
+      }
+      .title {
+        margin: 0;
+        color: rgb(var(--black));
+        line-height: 1;
+      }
+      .date {
+        margin: 0;
+        color: rgb(var(--gray));
+      }
+      ul li a:hover h4,
+      ul li a:hover .date {
+        color: rgb(var(--accent));
+      }
+      ul a:hover img {
+        box-shadow: var(--box-shadow);
+      }
+    </style>
+  </head>
+  <body>
+    <Header />
+    <main>
+      <section>
+        <ul>
+          {
+            posts.map((post) => (
+              <li>
+                <a href={`/posts/${post.id}/`}>
+                  {post.data.heroImage && (
+                    <img
+                      width={720}
+                      height={360}
+                      src={post.data.heroImage}
+                      alt=""
+                    />
+                  )}
+                  <h4 class="title">{post.data.title}</h4>
+                  <p class="date">
+                    <FormattedDate date={post.data.createdAt} />
+                  </p>
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </section>
+    </main>
+    <Footer />
+  </body>
+</html>

@@ -2,7 +2,6 @@
 title: node.js canvas を使って OGP 画像を自動生成
 createdAt: 2022-05-06
 tags: [Astro, Node.js]
-layout: "@/layouts/BlogPostLayout.astro"
 ---
 
 かなり前に [puppeteer で作った](/posts/puppeteer-og-image/) ことはあったんだけど、生成に時間がかかりすぎるので、やっぱ node.js で画像生成なら canvas が王道だろうということで作り直した。

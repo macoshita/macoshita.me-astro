@@ -16,7 +16,7 @@ On Amazon S3, `<link rel="prefetch">` is not work without crossorigin attribute.
 Perhaps Amazon S3 only add CORS headers (Access-Control-Allow-Origin, Access-Control-Allow-Methods ...) when request headers has `Origin`.
 When the document has no crossorigin prefetch tag, access to prefetch URL without origin header on Chrome.
 This response is cached Chrome, and reuse next access by `script` tag.
-This cache has no CORS headers. :cry:
+This cache has no CORS headers. 😢
 
 ## Source:
 
