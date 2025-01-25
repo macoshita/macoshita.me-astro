@@ -36,7 +36,7 @@ https://github.com/macoshita/macoshita.me
     - But you will wait for about a hour.
   - Enable Force HTTPS if successed it.
 
-It's very easy. Maybe you can do it with only smartphone! :thumbsup:
+It's very easy. Maybe you can do it with only smartphone! 👍
 
 ## Results
 
@@ -67,4 +67,4 @@ Is it too slow that always request content? Netlify's blog said:
 > Using HTTP/2, browsers multiplexes these connections so they can all happen within a single connection and you don’t have to do things like negotiate the HTTPS handshake over and over again.
 
 However this blog has filename based cache-busting JS and CSS, so I thought their content should edit Cache-Control max-age and I tried that.
-But... this blog is already cached by service worker, so it did not make sense :joy:
+But... this blog is already cached by service worker, so it did not make sense 😂

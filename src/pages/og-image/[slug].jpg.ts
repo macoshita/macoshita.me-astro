@@ -1,5 +1,7 @@
 import path from "node:path";
-import { createCanvas, GlobalFonts, SKRSContext2D } from "@napi-rs/canvas";
+import { createCanvas, GlobalFonts, type SKRSContext2D } from "@napi-rs/canvas";
+import type { APIRoute } from "astro";
+import { getCollection } from "astro:content";
 
 const segmenter = new Intl.Segmenter("ja", { granularity: "word" });
 
@@ -9,28 +11,17 @@ GlobalFonts.registerFromPath(
   "KiwiMaru"
 );
 
-export function getStaticPaths() {
-  // Ref: https://github.com/withastro/astro/blob/c3f411a7f2d77739cc32e7b7fbceb3d02018238d/packages/astro/test/fixtures/static-build/src/pages/posts.json.js
-  const posts = Object.keys(import.meta.glob("../posts/**/*.{md,mdx}"));
-
-  return posts.map((filename) => ({
-    params: { slug: filename.replace(/^.*\/(.*)\.mdx?$/, "$1") },
+export async function getStaticPaths() {
+  const posts = await getCollection("blog");
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: post,
   }));
 }
 
-export async function GET({ params: { slug } }) {
-  var content;
-  try {
-    content = await import(`../posts/${slug}.md`);
-  } catch (e) {
-    content = await import(`../posts/${slug}.mdx`);
-  }
-  const {
-    frontmatter: { title },
-  } = content;
-
-  return new Response(drawOGImage(title));
-}
+export const GET: APIRoute = async ({ props }) => {
+  return new Response(drawOGImage(props.data.title));
+};
 
 const CANVAS_WIDTH = 1200;
 const CANVAS_HEIGHT = 630;
@@ -55,14 +46,18 @@ function fill(ctx: SKRSContext2D) {
 
 function drawTitle(ctx: SKRSContext2D, title: string) {
   let lines, fontSize;
-  for (fontSize of [80, 72, 64]) {
-    ctx.font = `${fontSize}px KiwiMaru`;
+  for (const size of [80, 72, 64]) {
+    ctx.font = `${size}px KiwiMaru`;
     ctx.textBaseline = "middle";
     ctx.fillStyle = "#fff";
     lines = wrapText(ctx, title, CANVAS_WIDTH - PADDING * 2);
     if (lines.length <= 3) {
+      fontSize = size;
       break;
     }
+  }
+  if (!lines || !fontSize) {
+    throw new Error("Title is too long to fit in the canvas.");
   }
 
   const fontHeight = fontSize * 1.5;

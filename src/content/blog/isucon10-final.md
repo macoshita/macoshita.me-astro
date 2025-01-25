@@ -9,7 +9,7 @@ number: 3
 layout: "@/layouts/BlogPostLayout.astro"
 ---
 
-完敗だった :innocent:
+完敗だった 😇
 
 ## 何がまずかった？
 
